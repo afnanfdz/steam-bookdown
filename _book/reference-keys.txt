@@ -1,1 +1,8 @@
-test
+visualizations
+shiny-application
+personal-observations
+data-analysis
+hypothesis-testing-of-means
+hypothesis-testing-of-proportions
+linear-regression-model
+logistic-regression-model

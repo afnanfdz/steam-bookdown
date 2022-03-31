@@ -1,6 +1,6 @@
 ---
-title: "A Book, Made in Bookdown"
-author: "[By Vuc](https://github.com/afnanfdz)"
+title: "All About Steam Games: Visualizations & Relationships on the 15th of December"
+author: "[Afnan Dzaharudin](https://github.com/afnanfdz)"
 site: bookdown::bookdown_site
 documentclass: book
 output:
@@ -9,16 +9,53 @@ output:
     split_by: chapter
 ---
 
+```{r import_dataset, cache = TRUE, echo = FALSE, include = FALSE}
+`%>%` <- magrittr::`%>%`
+
+steam = readr::read_csv("https://raw.githubusercontent.com/afnanfdz/datasets/master/steam/steam.csv")
+```
+
+
 # Introduction {-}
 
-I'm not quite sure what I'm going to write in here. We'll see!
+Welcome to my first `bookdown` book! Thank you [Yihui Xie](https://yihui.org/en/about/) for this great resource.
 
-## Libraries {-}
+## About the book {-}
 
-* `bookdown`
+This book draws from a [single dataset on Steam games on December 15](https://github.com/afnanfdz/datasets/tree/master/steam), that details various information on the 1999 most popular Steam games (by concurrent players that date). Take a look:
 
-For creating this book!
+```{r show_head_top_ccu, echo = FALSE}
+steam %>%
+  dplyr::arrange(!ccu) %>%
+  DT::datatable(
+    options = list(
+      scrollX = TRUE,
+      pageLength = 5,
+      lengthMenu = c(5)
+    )
+  )
+```
 
-* `ggplot2`
+#### Why December 15th? {.unlisted -}
 
-For plotting graphs with a tidy syntax.
+That's the date I pulled my dataset from for two projects for two seperate courses that semester. It was also a particularly interesting time for Steam, since December is likely a livelier time for video games, and [Halo Infinite](https://store.steampowered.com/app/1240440/Halo_Infinite/), which was highly anticipated, came out around this time. Furthermore, while the code I used for generating the data _is_ fully automated and reusable (meaning I could easily get a dataset for whenever "today" is when you read this), it does take a long time to run, and, since I've already done work on this dataset before, I can refer to my finished projects to make sure things are consistent (this book is essentially a rewrite, but a lot tidier, better-explained and everything's in one place).
+
+#### Why 1999 games only? {.unlisted -}
+
+If you're asking why I'm 1 less than 2000... off-by-one error.
+
+If you're asking "why not more", it's because past 2000, the games in that category are almost completely unplayed, barely-sold, and such. The game graveyard, or the underside of the iceberg, if you will. These are games that never emerged for one reason or another, and therefore I don't count them in my dataset because I would like to mostly interact with games that _are_ played and _are_ relatively known to the space.
+
+#### Where did the data come from? {.unlisted -}
+
+TODO
+
+## Acknowledgements {-}
+
+This book is a remaster of final projects from two statistics courses:
+
+* STAT 207 (Data Science Exploration), on the Data Science pipeline through Python using `pandas`, `numpy`, `scipy`, `statsmodels`, `matplotlib` and `seaborn`. Taught by [Dr Victoria Ellison](https://vmellison.github.io/index.html).
+
+* STAT 385 (Statistics Programming Methods), on applying our lessons on data wrangling and plotting using `tidyverse` libraries in `R`, to develop a [single Shiny application](https://afnanfdz.shinyapps.io/final_project/). Taught by [Dr David Dalpiaz](https://daviddalpiaz.org/).
+
+My thanks go to both of these instructors for getting me inspired to do data science! Furthermore, Dave's use of `bookdown` for his course websites and textbooks have motivated me further to practice writing my own things in said library, such as this book!

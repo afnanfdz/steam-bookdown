@@ -19,3 +19,7 @@
 .header-section-number {
   color: #C0C0C0;
 }
+
+/* DataTable (DT) wizardry */
+
+table.display td { white-space: nowrap; }
